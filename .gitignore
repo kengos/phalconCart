@@ -1,2 +1,8 @@
 /cache/
 /config/development/
+config/environments/*/database.php
+vendor/
+runtime/cache/*
+runtime/upload/*
+runtime/logs/*
+bin/phalcon.php

@@ -1,0 +1,21 @@
+{
+    "name": "kengos/phalbtob",
+    "require": {
+        "php": ">= 5.6.0",
+        "ext-phalcon": ">= 2.0.0",
+        "ext-mcrypt": "*",
+        "ext-redis": "*",
+        "ext-memcached": "*",
+        "phalcon/devtools": "^2.0"
+    },
+    "license": "Apache License, Version 2.0",
+    "authors": [
+        {
+            "name": "kengos",
+            "email": "kengo@kengos.jp"
+        }
+    ],
+    "config": {
+      "bin-dir": "bin"
+    }
+}
