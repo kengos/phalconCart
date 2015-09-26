@@ -6,3 +6,4 @@ runtime/cache/*
 runtime/upload/*
 runtime/logs/*
 bin/phalcon.php
+bin/phpunit
