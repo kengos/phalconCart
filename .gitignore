@@ -1,6 +1,7 @@
 /cache/
 /config/development/
-config/environments/*/database.php
+config/environment.php
+config/*/database.php
 vendor/
 runtime/cache/*
 runtime/upload/*

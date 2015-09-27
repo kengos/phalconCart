@@ -1,7 +1,8 @@
 <?php
 
-abstract class AbstractUnitTest extends \Phalcon\Test\UnitTestCase
+abstract class AbstractUnitTest extends \PHPUnit_Framework_TestCase
 {
+  protected $_di;
   /**
    * @var \Voice\Cache
    */
@@ -10,20 +11,43 @@ abstract class AbstractUnitTest extends \Phalcon\Test\UnitTestCase
   /**
    * @var \Phalcon\Config
    */
-  protected $_config;
+  protected static $_config;
 
   /**
    * @var bool
    */
   private $_loaded = false;
 
-  public function setUp(\Phalcon\DiInterface $di = NULL, \Phalcon\Config $config = NULL)
+  public function setUp()
   {
-    $di = \Phalcon\DI::getDefault();
-    // TODO setting di
-    parent::setUp($di);
+    $this->_di = $this->initalizeService();
+    \Phalcon\DI::setDefault($this->_di);
 
     $this->_loaded = true;
+  }
+
+  protected function tearDown()
+  {
+    $di = $this->getDI();
+    $di::reset();
+    parent::tearDown();
+  }
+
+  protected function loadConfig($force = false)
+  {
+    if ($force || self::$_config == null) {
+      self::$_config = include APP_PATH . "/config/config.php";
+    }
+    return self::$_config;
+  }
+
+  protected function initalizeService()
+  {
+    $config = $this->loadConfig();
+    // TODO
+    include APP_PATH . "/config/loader.php";
+    include APP_PATH . "/config/services.php";
+    return $di;
   }
 
   /**
@@ -37,4 +61,10 @@ abstract class AbstractUnitTest extends \Phalcon\Test\UnitTestCase
       throw new \PHPUnit_Framework_IncompleteTestError('Please run parent::setUp().');
     }
   }
+
+  protected function getDI()
+  {
+    return $this->_di;
+  }
+
 }

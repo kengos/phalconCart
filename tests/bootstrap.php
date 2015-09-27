@@ -7,24 +7,16 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-define('ROOT_PATH', __DIR__);
+define('APP_PATH', dirname(__DIR__));
+define('APP_ENV', 'test');
+set_include_path(APP_PATH . '/tests/' . get_include_path());
+require APP_PATH . '/vendor/autoload.php';
 
-echo ROOT_PATH . "\n";
-set_include_path(
-  ROOT_PATH . "/" . get_include_path()
-);
-
-require ROOT_PATH . "/../vendor/autoload.php";
-
+# for test loader
 $loader = new \Phalcon\Loader();
 $loader->registerDirs(
   [
-    ROOT_PATH
+    APP_PATH . '/tests/'
   ]
 );
 $loader->register();
-
-$di = new FactoryDefault();
-DI::reset();
-
-DI::setDefault($di);

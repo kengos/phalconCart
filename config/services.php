@@ -8,7 +8,6 @@
 use Phalcon\Di\FactoryDefault;
 use Phalcon\Mvc\View;
 use Phalcon\Mvc\Url as UrlResolver;
-use Phalcon\Db\Adapter\Pdo\Mysql as DbAdapter;
 use Phalcon\Mvc\View\Engine\Volt as VoltEngine;
 use Phalcon\Mvc\Model\Metadata\Memory as MetaDataAdapter;
 use Phalcon\Session\Adapter\Files as SessionAdapter;
@@ -17,6 +16,12 @@ use Phalcon\Session\Adapter\Files as SessionAdapter;
  * The FactoryDefault Dependency Injector automatically register the right services providing a full stack framework
  */
 $di = new FactoryDefault();
+
+$di->setShared('config', $config);
+
+$di->setShared('log', function () use ($config){
+  return new \Phalcon\Logger\Adapter\File($config->application->logDir . $config->env . '.log');
+});
 
 /**
  * The URL component is used to generate all kind of urls in the application
@@ -55,11 +60,9 @@ $di->setShared('view', function () use ($config) {
     return $view;
 });
 
-/**
- * Database connection is created based in the parameters defined in the configuration file
- */
-$di->set('db', function () use ($config) {
-    return new DbAdapter($config->database->toArray());
+// Using DatabaseManager
+$di->setShared('db', function () use ($config) {
+    return new \PhalconCart\Components\Db\Connection($config);
 });
 
 /**
