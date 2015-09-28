@@ -4,32 +4,25 @@ namespace PhalconCart\Components\Db;
 
 class Connection extends \Phalcon\Mvc\User\Component
 {
-  private $_master;
-  private $_slave;
+  protected $_config;
 
   public function __construct(\Phalcon\Config $config)
   {
-    $this->initialize($config);
-  }
-
-  public function initialize(\Phalcon\Config $config)
-  {
-    $this->_master = $this->buildConnection($config->db->adapterType, $config->db->master->toArray());
-    $this->_slave = $this->selectSlave($config->db->adapterType, $config->db->slaves->toArray());
+    $this->_config = $config->db;
   }
 
   public function getMaster()
   {
-    return $this->_master;
+    return $this->buildConnection($this->_config->adapterType, $this->_config->master->toArray());
   }
 
   public function getSlave()
   {
-    if($this->_slave != null) {
-      return $this->_slave;
-    } else {
-      return $this->_master;
+    $connection = $this->selectSlave($this->_config->adapterType, $this->_config->slaves->toArray());
+    if($connection != null) {
+      return $connection;
     }
+    return $this->getMaster();
   }
 
   private function selectSlave($adapterType, array $configs)

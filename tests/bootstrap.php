@@ -14,9 +14,7 @@ require APP_PATH . '/vendor/autoload.php';
 
 # for test loader
 $loader = new \Phalcon\Loader();
-$loader->registerDirs(
-  [
-    APP_PATH . '/tests/'
-  ]
-);
+$loader->registerDirs([
+  APP_PATH . '/tests/'
+]);
 $loader->register();

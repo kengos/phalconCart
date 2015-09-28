@@ -1,11 +1,9 @@
-/cache/
-/config/development/
-config/environment.php
-config/*/database.php
+config/environments/database.php
+config/environments/env.php
 config/phinx.yml
 vendor/
-runtime/cache/*
 runtime/upload/*
+runtime/cache/volt/*
 runtime/logs/*
 bin/phinx
 bin/phpunit

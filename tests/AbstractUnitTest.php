@@ -2,16 +2,7 @@
 
 abstract class AbstractUnitTest extends \PHPUnit_Framework_TestCase
 {
-  protected $_di;
-  /**
-   * @var \Voice\Cache
-   */
-  protected $_cache;
-
-  /**
-   * @var \Phalcon\Config
-   */
-  protected static $_config;
+  protected $_service;
 
   /**
    * @var bool
@@ -20,8 +11,8 @@ abstract class AbstractUnitTest extends \PHPUnit_Framework_TestCase
 
   public function setUp()
   {
-    $this->_di = $this->initalizeService();
-    \Phalcon\DI::setDefault($this->_di);
+    $this->_service = $this->loadService();
+    \Phalcon\DI::setDefault($this->_service->getDI());
 
     $this->_loaded = true;
   }
@@ -33,21 +24,9 @@ abstract class AbstractUnitTest extends \PHPUnit_Framework_TestCase
     parent::tearDown();
   }
 
-  protected function loadConfig($force = false)
+  protected function loadService()
   {
-    if ($force || self::$_config == null) {
-      self::$_config = include APP_PATH . "/config/config.php";
-    }
-    return self::$_config;
-  }
-
-  protected function initalizeService()
-  {
-    $config = $this->loadConfig();
-    // TODO
-    include APP_PATH . "/config/loader.php";
-    include APP_PATH . "/config/services.php";
-    return $di;
+    return require APP_PATH . "/config/initializer/console.php";
   }
 
   /**
@@ -64,7 +43,7 @@ abstract class AbstractUnitTest extends \PHPUnit_Framework_TestCase
 
   protected function getDI()
   {
-    return $this->_di;
+    return $this->_service->getDI();
   }
 
 }
