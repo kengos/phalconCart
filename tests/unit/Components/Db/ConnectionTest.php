@@ -1,5 +1,7 @@
 <?php
 
+namespace Test\Unit\Components\Db;
+
 class ConnectionTest extends AbstractUnitTest
 {
   public function testGetSlave()

@@ -13,5 +13,5 @@ bin/phinx create -c config/phinx.yml CreateUsers
 Apply migration
 
 ```sh
-bin/phinx migrate -c config/phinx.yml
+bin/phinx migrate -c config/phinx.yml -e development
 ```

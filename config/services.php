@@ -62,7 +62,15 @@ $di->setShared('view', function () use ($config) {
 
 // Using DatabaseManager
 $di->setShared('db', function () use ($config) {
-    return new \PhalconCart\Components\Db\Connection($config);
+  return new \PhalconCart\Components\Db\Connection($config);
+});
+
+$di->setShared('masterDb', function () use ($di) {
+  return $di->getShared('db')->getMaster();
+});
+
+$di->setShared('slaveDb', function () use ($di) {
+  return $di->getShared('db')->getSlave();
 });
 
 /**
