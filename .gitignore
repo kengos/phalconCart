@@ -2,9 +2,10 @@
 /config/development/
 config/environment.php
 config/*/database.php
+config/phinx.yml
 vendor/
 runtime/cache/*
 runtime/upload/*
 runtime/logs/*
-bin/phalcon.php
+bin/phinx
 bin/phpunit

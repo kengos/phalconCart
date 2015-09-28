@@ -1,0 +1,23 @@
+paths:
+    migrations: db/migrations
+
+environments:
+    default_migration_table: migrations
+    default_database: development
+    development:
+        adapter: mysql
+        host: localhost
+        name: phalcon_cart_dev
+        user: root
+        pass: ''
+        port: 3306
+        charset: utf8
+
+    test:
+        adapter: mysql
+        host: localhost
+        name: phalcon_cart_test
+        user: root
+        pass: ''
+        port: 3306
+        charset: utf8
