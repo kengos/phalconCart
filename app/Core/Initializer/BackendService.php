@@ -12,6 +12,7 @@ class BackendService extends AbstractInitializer
     $this->attachViewService($config->application->voltCacheDir, $config->application->backendViewDir);
     $this->attachUrlResolver();
     $this->attachDispatcher();
+    $this->attachResponseService();
     return $this;
   }
 

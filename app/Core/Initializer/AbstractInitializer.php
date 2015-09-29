@@ -107,4 +107,17 @@ abstract class AbstractInitializer
     });
     return $this;
   }
+
+  public function attachResponseService()
+  {
+    $this->_di->setShared('response', function() {
+      $response = new \Phalcon\Http\Response();
+      $response->setHeader('X-Frame-Options', 'SAMEORIGIN');
+      $response->setHeader('X-Content-Type-Options', 'nosniff');
+      $response->setHeader('X-XSS-Protection', '1; mode=block');
+      $response->setHeader('X-Download-Options', 'noopen');
+      return $response;
+    });
+    return $this;
+  }
 }

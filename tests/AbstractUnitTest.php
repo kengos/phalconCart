@@ -7,7 +7,7 @@ abstract class AbstractUnitTest extends \PHPUnit_Framework_TestCase
   /**
    * @var bool
    */
-  private $_loaded = false;
+  protected $_loaded = false;
 
   public function setUp()
   {
