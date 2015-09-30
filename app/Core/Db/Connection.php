@@ -1,8 +1,8 @@
 <?php
 
-namespace PhalconCart\Components\Db;
+namespace PhalconCart\Core\Db;
 
-class Connection extends \Phalcon\Mvc\User\Component
+class Connection
 {
   protected $_config;
 
@@ -47,7 +47,7 @@ class Connection extends \Phalcon\Mvc\User\Component
   private function buildConnection($adapterType, array $config)
   {
     if($adapterType == 'Mysql') {
-      return new \Phalcon\Db\Adapter\Pdo\Mysql($config);
+      return new Mysql($config);
     } else {
       throw \Exception("Unknown Adapter type " . $adapterType);
     }

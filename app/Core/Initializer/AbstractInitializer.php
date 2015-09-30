@@ -39,7 +39,7 @@ abstract class AbstractInitializer
 
   public function attachDatabaseService(\Phalcon\Config $config)
   {
-    $connection = new \PhalconCart\Components\Db\Connection($config);
+    $connection = new \PhalconCart\Core\Db\Connection($config);
     $this->_di->setShared('masterDb', function () use ($connection) {
       return $connection->getMaster();
     });

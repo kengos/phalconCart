@@ -1,18 +1,18 @@
 <?php
 
-namespace Test\Unit\Components\Db;
+namespace Test\Unit\Core\Db;
 
 class ConnectionTest extends \AbstractUnitTest
 {
   public function testGetSlave()
   {
     $connection = $this->getDI()->getShared('slaveDb');
-    $this->assertInstanceOf('\Phalcon\Db\Adapter\Pdo\Mysql', $connection);
+    $this->assertInstanceOf('\PhalconCart\Core\Db\Mysql', $connection);
   }
 
   public function testGetMaster()
   {
     $connection = $this->getDI()->getShared('masterDb');
-    $this->assertInstanceOf('\Phalcon\Db\Adapter\Pdo\Mysql', $connection);
+    $this->assertInstanceOf('\PhalconCart\Core\Db\Mysql', $connection);
   }
 }
