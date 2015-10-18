@@ -9,6 +9,8 @@ class ConsoleService extends AbstractInitializer
     $this->_config = $config;
     $this->attachLogService($config);
     $this->attachDatabaseService($config);
+    $this->attachElementBuilder();
+    $this->attachTranslate();
     return $this;
   }
 }

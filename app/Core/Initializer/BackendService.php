@@ -13,6 +13,8 @@ class BackendService extends AbstractInitializer
     $this->attachUrlResolver();
     $this->attachDispatcher();
     $this->attachResponseService();
+    $this->attachElementBuilder();
+    $this->attachTranslate();
     return $this;
   }
 

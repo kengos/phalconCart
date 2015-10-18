@@ -12,6 +12,9 @@ class FrontendService extends AbstractInitializer
     $this->attachViewService($config->application->voltCacheDir, $config->application->frontendViewDir);
     $this->attachUrlResolver();
     $this->attachDispatcher();
+    $this->attachResponseService();
+    $this->attachElementBuilder();
+    $this->attachTranslate();
     return $this;
   }
 

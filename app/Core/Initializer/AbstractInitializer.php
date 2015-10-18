@@ -120,4 +120,19 @@ abstract class AbstractInitializer
     });
     return $this;
   }
+
+  public function attachElementBuilder()
+  {
+    $this->_di->setShared('elementBuilder', function() {
+      return new \PhalconCart\Core\Forms\ElementBuilder();
+    });
+    return $this;
+  }
+
+  public function attachTranslate()
+  {
+    $this->_di->setShard('translate', function() {
+      return new \PhalconCart\Core\Translate\Base();
+    })
+  }
 }

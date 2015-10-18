@@ -9,14 +9,19 @@ class Base
   protected $_path;
   protected $_cache = [];
 
-  public function __construct($lang)
+  public function __construct($lang = 'ja')
   {
-    $this->_path = APP_PATH . '/config/messages/' . $lang . '/'; // TODO
+    $this->setLang($lang);
   }
 
   public function __get($category)
   {
     return $this->getTranslation($category);
+  }
+
+  public function setLang($lang)
+  {
+    $this->_path = APP_PATH . '/config/messages/' . $lang . '/'; // TODO
   }
 
   public function getTranslation($category)
